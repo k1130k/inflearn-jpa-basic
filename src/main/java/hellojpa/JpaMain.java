@@ -12,11 +12,15 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        try {
-            em.find(Member.class,1L);
-            System.out.println("findMember.getId() = " + findMember.getId());
 
-            em.persist(member);
+        try {
+
+            //영속
+            Member findMember1 = em.find(Member.class, 101L);
+            Member findMember2 = em.find(Member.class, 101L);
+
+            System.out.println("result = " + (findMember1 == findMember2));
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
